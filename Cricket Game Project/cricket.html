@@ -28,6 +28,11 @@
         showResult('Stump', computerChoice, resultMsg);
     ">Stump</button>
 
+    <h3 id="user_move"></h3>
+    <h3 id="computer_move"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score"></h3>
+
     <button onclick="localStorage.clear()
         resetScore();
     ">RESET</button>
@@ -59,8 +64,9 @@
         //     };
         // }
             score.displayScore = function() {
-                return `No of matches Won:${score.win}, Lost:${score.lost}, Tie: ${score.tie}`;
+                return `Score:${score.win}, Lost:${score.lost}, Tie: ${score.tie}`;
             }
+        showResult();
         }
 
         function generateComputerChoice() {
@@ -114,11 +120,22 @@
 
         function showResult(userMove, computerMove, result) {
             localStorage.setItem('Score', JSON.stringify(score));
-        alert(`You have chosen ${userMove}. Computer choice is ${computerMove}
         
-        ${result}
+        document.getElementById('user_move').innerText = 
+        userMove !== undefined ? `User Move: ${userMove}`: '';
         
-        ${score.displayScore()}`);
+        document.getElementById('computer_move').innerText =       computerMove !== undefined ? `Computer Move: ${computerMove}` : '';
+
+        document.getElementById('result').innerText = 
+        result !== undefined ? `Result: ${result}`: '';
+
+        document.getElementById('score').innerText = score.displayScore();
+
+        // alert(`You have chosen ${userMove}. Computer choice is ${computerMove}
+        
+        // ${result}
+        
+        // ${score.displayScore()}`);
         }
     </script>
 </body>
